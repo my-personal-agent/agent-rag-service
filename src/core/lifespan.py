@@ -1,15 +1,16 @@
 import logging
 from contextlib import AsyncExitStack, asynccontextmanager
 from typing import AsyncGenerator, Optional, Tuple, cast
+
+from fastapi import FastAPI
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 from langgraph.store.postgres import AsyncPostgresStore
-
 from langgraph.store.postgres.base import PoolConfig
-from fastapi import FastAPI
 
 from agents.embeddings import get_lang_store_embeddings
 from agents.supervisor_agent import build_supervisor_agent
 from config.settings_config import get_settings
+from core.qdrant import setup_qdrant
 from db.prisma.utils import get_db
 
 logger = logging.getLogger(__name__)
@@ -86,6 +87,9 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
     # load db
     db = await get_db()
+
+    # load qdrant
+    setup_qdrant()
 
     # embeddings
     embeddings, dims = get_lang_store_embeddings()

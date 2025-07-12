@@ -22,6 +22,9 @@ class Settings(BaseSettings):
     supervisor_agent_model: Annotated[
         str, BeforeValidator(str.strip), Field(min_length=1)
     ]
+    uploaded_files_agent_model: Annotated[
+        str, BeforeValidator(str.strip), Field(min_length=1)
+    ]
 
     # postgres
     postgres_database_url: Annotated[
@@ -35,6 +38,19 @@ class Settings(BaseSettings):
         str, BeforeValidator(str.strip), Field(min_length=1)
     ]
     lang_store_embeddings_model_dims: Annotated[int, Field(ge=0)]
+
+    # dir
+    upload_temp_dir: Annotated[str, BeforeValidator(str.strip), Field(min_length=1)]
+
+    # qdrant
+    qdrant_url: AnyHttpUrl
+    qdrant_embeddings_model: Annotated[
+        str, BeforeValidator(str.strip), Field(min_length=1)
+    ]
+    qdrant_embeddings_model_dims: Annotated[int, Field(ge=0)]
+    qdrant_upload_collection_name: Annotated[
+        str, BeforeValidator(str.strip), Field(min_length=1)
+    ]
 
     class ConfigDict:
         env_file = ".env"
