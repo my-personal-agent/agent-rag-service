@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "agent-rag-service"
+name = "rag-agent-service"
 version = "0.1.0"
 description = ""
 authors = ["Wai Yan Min Khaing <waiyanminkhaing1997@gmail.com>"]

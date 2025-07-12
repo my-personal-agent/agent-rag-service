@@ -1,1 +1,1 @@
-# agent-rag-service
+# rag-agent-service

@@ -4,23 +4,23 @@ from prometheus_client import Counter, Gauge, Histogram, Info
 from config.settings_config import get_settings
 
 api_calls_counter = Counter(
-    "agent_rag_api_calls_total",
-    "Total Agent RAG API calls",
+    "rag_agent_api_calls_total",
+    "Total RAG Agent API calls",
     ["endpoint", "method", "status"],
 )
 api_duration_histogram = Histogram(
-    "agent_rag_api_duration_seconds",
-    "Agent RAG API execution time",
+    "rag_agent_api_duration_seconds",
+    "RAG Agent API execution time",
     ["endpoint", "method"],
 )
 active_connections = Gauge(
-    "agent_rag_api_active_connections", "Number of active connections"
+    "rag_agent_api_active_connections", "Number of active connections"
 )
-server_info = Info("agent_rag_api_server_info", "Server info")
+server_info = Info("rag_agent_api_server_info", "Server info")
 
 # System metrics
-memory_usage = Gauge("agent_rag_api_memory_usage_bytes", "Memory usage in bytes")
-cpu_usage = Gauge("agent_rag_api_cpu_usage_percent", "CPU usage percent")
+memory_usage = Gauge("rag_agent_api_memory_usage_bytes", "Memory usage in bytes")
+cpu_usage = Gauge("rag_agent_api_cpu_usage_percent", "CPU usage percent")
 
 # Set static metadata for server
 server_info.info(
